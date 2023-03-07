@@ -1,0 +1,408 @@
+{
+	"info": {
+		"_postman_id": "e59f3875-bd43-4f1d-9969-e4c88086a726",
+		"name": "Practica 2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25474017"
+	},
+	"item": [
+		{
+			"name": "get/ListaDeUsusarios-200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"",
+							"",
+							"//Prueba para validar el código de respuesta",
+							"pm.test(\"Validar que el código de respuesta es un 200\", function(){",
+							"    pm.expect(pm.response.code).to.eql(200)//espera que el código de respuesta sea un 200",
+							"   ",
+							"});",
+							"",
+							"pm.test(\"Validar que el status code reponse es un 200\", function(){",
+							"    ",
+							"    pm.response.to.have.status(200)//validar que el response tenga un estatus de 200",
+							"    ",
+							"});",
+							"",
+							"pm.test(\"Validar que el status response es iagual a OK\", function(){",
+							"    ",
+							"    pm.response.to.have.status(\"OK\") // que el estatus sea un OK (200=OK)",
+							"    //los 3 anteriores son lo mismo",
+							"    //la palabra pm es un objeto, lo demás son propiedades",
+							"});",
+							"",
+							"pm.test(\"validar que el tiempo de respuesta es menor a 1seg\", () => {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"validar que el body no viene vacio\", function (){",
+							"    pm.expect(pm.response.body).not.to.be.null;",
+							"});",
+							"",
+							" var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Validar que la página sea cierta página\", function () {",
+							"   pm.expect(jsonData.page).to.eql(2);",
+							"});",
+							"",
+							"pm.test(\"Validar que total sea 12\", function () {",
+							"    pm.expect(jsonData.total).to.eql(12);",
+							"});",
+							"",
+							"var info = jsonData.data.find(x => x.last_name == \"Lawson\")",
+							"",
+							"pm.test(\"Validar información de un usuario\", () => { ",
+							"    pm.expect(info.email).to.eql(\"michael.lawson@reqres.in\")",
+							"    //console.log(info)",
+							"})",
+							"",
+							"pm.test (\"validar información de usuarios\", () => {",
+							"    pm.expect(info.avatar).contains(\"https://reqres.in/img/faces/7-image.jpg\")",
+							"})",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/users?page=2",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get/LeerUsuarioConId - 200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Prueba para validar el código de respuesta",
+							"pm.test(\"Validar que el código de respuesta es un 200\", function(){",
+							"    pm.expect(pm.response.code).to.eql(200)//espera que el código de respuesta sea un 200",
+							"   ",
+							"});",
+							"",
+							"pm.test(\"Validar que el status code reponse es un 200\", function(){",
+							"    ",
+							"    pm.response.to.have.status(200)//validar que el response tenga un estatus de 200",
+							"    ",
+							"});",
+							"",
+							"pm.test(\"Validar que el status response es iagual a OK\", function(){",
+							"    ",
+							"    pm.response.to.have.status(\"OK\") // que el estatus sea un OK (200=OK)",
+							"    //los 3 anteriores son lo mismo",
+							"    //la palabra pm es un objeto, lo demás son propiedades",
+							"});",
+							"pm.test(\"validar que el tiempo de respuesta es menor a 1seg\", () => {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"validar que el body no viene vacio\", function (){",
+							"    pm.expect(pm.response.body).not.to.be.null;",
+							"});",
+							"",
+							" console.log(\"Response:\", pm.response.json().data.first_name)",
+							"",
+							"pm.test(\"ver el nombre\", function (){",
+							"    ",
+							"   pm.expect( pm.response.json().data.first_name);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/users/9",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"users",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post/CrearUsuario - 201",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Prueba para validar el código de respuesta",
+							"pm.test(\"Validar que el código de respuesta es un 201\", function(){",
+							"    pm.expect(pm.response.code).to.eql(201)//espera que el código de respuesta sea un 200",
+							"   ",
+							"});",
+							"",
+							"pm.test(\"Validar que el status code reponse es un 201\", function(){",
+							"    ",
+							"    pm.response.to.have.status(201)//validar que el response tenga un estatus de 200",
+							"    ",
+							"});",
+							"",
+							"pm.test(\"Validar que el status response es iagual a Created\", function(){",
+							"    ",
+							"    pm.response.to.have.status(\"Created\") // que el estatus sea un OK (200=OK)",
+							"    //los 3 anteriores son lo mismo",
+							"    //la palabra pm es un objeto, lo demás son propiedades",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Elizabeth\",\n    \"job\": \"queen\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/users",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get/LeerUsuarioCreado - 201",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Prueba para validar el código de respuesta",
+							"pm.test(\"Validar que el código de respuesta este entre 200, 201, 404\", function(){",
+							"     pm.expect(pm.response.code).to.be.oneOf([200,201,404])",
+							"   ",
+							"});",
+							"",
+							"pm.test(\"Validar que el status code reponse es un 200\", function(){",
+							"    ",
+							"    pm.response.to.have.status(200)//validar que el response tenga un estatus de 200",
+							"    ",
+							"});",
+							"",
+							"pm.test(\"Validar que el status response es iagual a OK\", function(){",
+							"    ",
+							"    pm.response.to.have.status(\"OK\") // que el estatus sea un OK (200=OK)",
+							"    //los 3 anteriores son lo mismo",
+							"    //la palabra pm es un objeto, lo demás son propiedades",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/295",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"295"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get/EditarUsuarioCreado - 200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Prueba para validar el código de respuesta",
+							"pm.test(\"Validar que el código de respuesta es un 200\", function(){",
+							"    pm.expect(pm.response.code).to.eql(200)//espera que el código de respuesta sea un 200",
+							"   ",
+							"});",
+							"",
+							"pm.test(\"Validar que el status code reponse es un 200\", function(){",
+							"    ",
+							"    pm.response.to.have.status(200)//validar que el response tenga un estatus de 200",
+							"    ",
+							"});",
+							"",
+							"pm.test(\"Validar que el status response es iagual a OK\", function(){",
+							"    ",
+							"    pm.response.to.have.status(\"OK\") // que el estatus sea un OK (200=OK)",
+							"    //los 3 anteriores son lo mismo",
+							"    //la palabra pm es un objeto, lo demás son propiedades",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"morpheus\",\n    \"job\": \"zion resident\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/users/285",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"users",
+						"285"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete /BorrarUsuarioCreado - 204",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Prueba para validar el código de respuesta",
+							"pm.test(\"Validar que el código de respuesta es un 204\", function(){",
+							"    pm.expect(pm.response.code).to.eql(204)//espera que el código de respuesta sea un 200",
+							"   ",
+							"});",
+							"",
+							"pm.test(\"Validar que el status code reponse es un 204\", function(){",
+							"    ",
+							"    pm.response.to.have.status(204)//validar que el response tenga un estatus de 200",
+							"    ",
+							"});",
+							"",
+							"pm.test(\"Validar que el status response es iagual a no content\", function(){",
+							"    ",
+							"    pm.response.to.have.status(\"No Content\") // que el estatus sea un OK (200=OK)",
+							"    //los 3 anteriores son lo mismo",
+							"    //la palabra pm es un objeto, lo demás son propiedades",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/users/285",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"users",
+						"285"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://reqres.in/api/registerpost /CrearRegistro - 200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Prueba para validar el código de respuesta",
+							"pm.test(\"Validar que el código de respuesta es un 200\", function(){",
+							"    pm.expect(pm.response.code).to.eql(200)//espera que el código de respuesta sea un 200",
+							"   ",
+							"});",
+							"",
+							"pm.test(\"Validar que el status code reponse es un 200\", function(){",
+							"    ",
+							"    pm.response.to.have.status(200)//validar que el response tenga un estatus de 200",
+							"    ",
+							"});",
+							"",
+							"pm.test(\"Validar que el status response es iagual a OK\", function(){",
+							"    ",
+							"    pm.response.to.have.status(\"OK\") // que el estatus sea un OK (200=OK)",
+							"    //los 3 anteriores son lo mismo",
+							"    //la palabra pm es un objeto, lo demás son propiedades",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"eve.holt@reqres.in\",\n    \"password\": \"pistol\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/register",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
