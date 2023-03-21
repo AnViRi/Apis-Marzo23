@@ -1,0 +1,4 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"failed","Tue Mar 21 10:14:42 CST 2023","Tue Mar 21 10:14:43 CST 2023","867","","eCommerce","","eCommerce","obtener_Categorias_filtrado_200","Test case: validar el filtrado de categorias",""
+"passed","Tue Mar 21 10:14:43 CST 2023","Tue Mar 21 10:14:43 CST 2023","309","","ejemplo_api_test","","ejemplo_api_test","api_test","api_test()",""
+"failed","Tue Mar 21 10:14:43 CST 2023","Tue Mar 21 10:14:43 CST 2023","455","","practica_hotel","","practica_hotel","create_booking_200","create_booking_200()",""
