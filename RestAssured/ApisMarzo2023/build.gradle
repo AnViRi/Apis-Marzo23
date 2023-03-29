@@ -22,7 +22,9 @@ dependencies {
     testImplementation 'io.qameta.allure:allure-junit5:2.13.1'
     implementation 'io.qameta.allure:allure-rest-assured:2.13.9'
 
-    //testImplementation("org.slf4j:slf4-simple:1.7.36")
+    testImplementation("org.slf4j:slf4j-simple:1.7.36")
+
+    implementation 'com.github.javafaker:javafaker:1.0.2'
 
 
 }
@@ -30,3 +32,8 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+tasks.withType(Test){
+    maxParallelForks = 3
+}
+
